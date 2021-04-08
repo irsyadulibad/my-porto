@@ -1,4 +1,4 @@
-<?= $this->extend('auth/layouts/app') ?>
+<?= $this->extend('Auth/layouts/app') ?>
 
 <?= $this->section('content') ?>
 	<div class="container mt-5">
@@ -9,7 +9,7 @@
 					<div class="card-header"><h4>Login</h4></div>
 
 					<div class="card-body">
-						<?= $this->include('auth/partials/alert') ?>
+						<?= $this->include('Auth/partials/alert') ?>
 
 						<form action="<?= route_to('login') ?>" method="post">
 							<?= csrf_field() ?>

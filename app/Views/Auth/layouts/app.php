@@ -5,7 +5,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title><?= $title ?? 'Admin' ?></title>
 
-  <?= $this->include('auth/layouts/style') ?>
+  <?= $this->include('Auth/layouts/style') ?>
 </head>
 
 <body>
@@ -13,6 +13,6 @@
     <?= $this->renderSection('content') ?>
   </div> 
 
-  <?= $this->include('auth/layouts/script') ?>
+  <?= $this->include('Auth/layouts/script') ?>
 </body>
 </html>
