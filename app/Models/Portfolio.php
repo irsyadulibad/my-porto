@@ -21,12 +21,24 @@ class Portfolio extends Model
 
 	public function findOrFail($id)
 	{
-		$service = $this->find($id);
+		$portfolio = $this->find($id);
 
-		if(!$service) {
+		if(!$portfolio) {
 			throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 		} else {
-			return $service;
+			return $portfolio;
+		}
+	}
+	
+	public function findWithSlug($slug)
+	{
+		$portfolio = $this->where('slug', $slug)->find();
+
+		if(!$portfolio) {
+			throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+		} else {
+			$id = $portfolio[0]->id;
+			return $this->withCategory($id);
 		}
 	}
 
@@ -41,7 +53,7 @@ class Portfolio extends Model
 			return $data;
 		} else {
 			$data = $this->find($id);
-			$data['category'] = $this->category->find($data->id);
+			$data->category = $this->category->find($data->id);
 
 			return $data;
 		}

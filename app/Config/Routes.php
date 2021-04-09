@@ -80,6 +80,7 @@ $routes->group('', ['namespace' => 'App\Controllers'], function($routes) {
   $routes->post('login', 'AuthController::attemptLogin');
   $routes->get('logout', 'AuthController::logout', ['as' => 'logout']);
 
+  $routes->get('portfolio/(:segment)', 'Portfolio::detail/$1', ['as' => 'portfolio-detail']);
   $routes->post('inbox/save', 'Inbox::save');
 });
 /**
