@@ -72,6 +72,9 @@ $routes->group('panel', ['namespace' => 'App\Controllers\Panel'], function($rout
 
 	$routes->post('settings/general', 'Setting::saveGeneral', ['as' => 'settings-save-general']);
 	$routes->post('settings/page', 'Setting::savePage', ['as' => 'settings-save-page']);
+	
+	$routes->get('change-password', 'Setting::changePassword', ['as' => 'change-password']);
+	$routes->post('change-password', 'Setting::saveChangePassword', ['as' => 'save-change-password']);
 });
 
 $routes->group('', ['namespace' => 'App\Controllers'], function($routes) {

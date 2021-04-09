@@ -4,11 +4,6 @@ use App\Models\Option;
 
 class Contact extends BaseController
 {
-	public function __construct()
-	{
-		$this->validation = \Config\Services::validation();
-	}
-
 	public function index()
 	{
 		$title = 'Contact Information';

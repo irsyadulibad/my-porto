@@ -5,7 +5,7 @@ class Setting extends BaseController
 	public function __construct()
 	{
 		helper('form');
-		$this->validation = \Config\Services::validation();
+		$this->auth = service('authentication');
 	}
 
 	public function index()
@@ -56,6 +56,40 @@ class Setting extends BaseController
 		}
 
 		return redirect()->back()->with('error', 'Failed to update the settings');
+	}
+	
+	public function changePassword()
+	{
+		$title = 'Change Password';
+		$errors = session()->getFlashdata('errors');
+		
+		return view('panel/setting/password', compact('title', 'errors'));
+	}
+	
+	public function saveChangePassword()
+	{
+		$data = $this->request->getPost();
+		
+		if($this->validation->run($data, 'changePassword')) {
+			$credential = [
+				'email' => user()->email,
+				'password' => $data['password']
+			];
+			
+			if($this->auth->validate($credential)) {
+				$user = user();
+				$user->setPassword($data['new-password']);
+				
+				$users = model('UserModel');
+				$users->save($user);
+				
+				return redirect()->back()->with('message', 'Password changed');
+			}
+			
+			return redirect()->back()->with('error', 'Password is wrong');
+		}
+		
+		return redirect()->back()->with('errors', $this->validation->getErrors());
 	}
 
 	private function getHeroImage()

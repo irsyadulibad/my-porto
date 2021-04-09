@@ -7,7 +7,6 @@ class About extends BaseController
 	public function __construct()
 	{
 		$this->about = new AboutModel;
-		$this->validation = \Config\Services::validation();
 	}
 
 	public function index()

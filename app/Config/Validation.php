@@ -78,4 +78,10 @@ class Validation
 		'subject' => 'required|min_length[8]',
 		'message' => 'required'
 	];
+	
+	public $changePassword = [
+		'password' => 'required',
+		'new-password' => 'required',
+		'confirm-password' => 'required|matches[new-password]'
+	];
 }

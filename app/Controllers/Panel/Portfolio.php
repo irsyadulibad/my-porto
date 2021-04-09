@@ -10,7 +10,6 @@ class Portfolio extends BaseController
 		helper('form');
 		$this->category = new Category;
 		$this->portfolio = new PortfolioModel;
-		$this->validation = \Config\Services::validation();
 	}
 
 	public function index()
