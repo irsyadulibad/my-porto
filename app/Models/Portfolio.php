@@ -32,13 +32,13 @@ class Portfolio extends Model
 	
 	public function findWithSlug($slug)
 	{
-		$portfolio = $this->where('slug', $slug)->find();
+		$portfolio = $this->where('slug', $slug)->first();
 
 		if(!$portfolio) {
 			throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 		} else {
-			$id = $portfolio[0]->id;
-			return $this->withCategory($id);
+			$portfolio->category = $this->category->find($portfolio->category_id);
+			return $portfolio;
 		}
 	}
 
